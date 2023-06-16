@@ -12,14 +12,15 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
 
   return (
     <Overlay isOpen={isOpen}>
-      <MenuWrapper>
+      <Content>
         <ButtonWrapper onClick={onDismiss}>
           <NativeSelect></NativeSelect>
           <DisplayedBit>
             <Icon id="close" color="var(--color-gray-900)" />
           </DisplayedBit>
-          <VisuallyHidden>Close</VisuallyHidden>
+          <VisuallyHidden>Dismiss menu</VisuallyHidden>
         </ButtonWrapper>
+        <Filler />
         <NavWrapper>
           <a href="/sale">SALE</a>
           <a href="/new">NEW&nbsp;RELEASES</a>
@@ -33,7 +34,7 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
           <a href="/privacy">Privacy Policy</a>
           <a href="/contact">Contact Us</a>
         </FooterWrapper>
-      </MenuWrapper>
+      </Content>
     </Overlay>
   );
 };
@@ -45,12 +46,12 @@ const Overlay = styled(DialogOverlay)`
   right: 0;
   bottom: 0;
   overflow-y: scroll;
-  background-color: hsla(0deg 0% 0% / 0.5);
+  background: var(--color-backdrop);
   display: flex;
   justify-content: flex-end;
 `;
 
-const MenuWrapper = styled.div`
+const Content = styled(DialogContent)`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -69,8 +70,12 @@ const MenuWrapper = styled.div`
 
 const ButtonWrapper = styled.div`
   position: absolute;
-  right: 1rem;
-  top: 2rem;
+  top: 10px;
+  right: 0;
+  padding: 16px; // makes a larger target to tap the button easily.
+  // And why it is set to be @ position of 'right 16px, top 26px' which seems unnatural
+  // is that because it is exactly where the toggle button is when closing the menu.
+  // you can see when you play the mobile. That is an awesome tip.
 `;
 
 const NativeSelect = styled.select`
@@ -96,9 +101,8 @@ const NavWrapper = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 1.25rem;
-  @media (${QUERIES.mobileMax}) {
-    font-size: 1rem;
-  }
+  font-weight: var(--weights-medium);
+  gap: 1rem;
 
   & > a {
     color: var(--color-gray-900);
@@ -110,17 +114,24 @@ const NavWrapper = styled.div`
   }
 `;
 
-const FooterWrapper = styled.div`
+const FooterWrapper = styled.footer`
+  flex: 1;
   display:flex;
   flex-direction: column;
-  position: absolute;
-  bottom: 2rem;
+  justify-content: flex-end;
+  padding: 1rem;
   font-size: 0.75rem;
 
   & > a {
     color: var(--color-gray-900);
     text-decoration: none;
   }
+`;
+
+const Filler = styled.div`
+  flex: 1;
+  padding: 1rem;
+  
 `;
 
 export default MobileMenu;

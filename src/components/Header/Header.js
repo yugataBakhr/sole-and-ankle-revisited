@@ -79,9 +79,8 @@ const MainHeader = styled.div`
   display: flex;
   align-items: center;
   padding: 18px 32px;
-  height: 72px;
   border-bottom: 1px solid var(--color-gray-300);
- 
+  overflow: auto; // a scroll bar looks nicer when this prop is in the parent element 
   @media ${QUERIES.tabletMax} {
     border-top: 4px solid var(--color-gray-900);
     justify-content: space-between;
@@ -95,11 +94,12 @@ const MainHeader = styled.div`
 const Nav = styled.nav`
   display: flex;
   gap: clamp(
-    2rem,
-    11.5vw - 4.5rem,
-    8rem
+    1rem, // note to self. 16px is the minimum space between elements.
+    8vw - 4rem,
+    3rem
   );
   margin: 0px 48px;
+  //overflow-x: scroll; // it does not look great when this prop here.
   @media ${QUERIES.tabletMax} {
     display: none;
   }
