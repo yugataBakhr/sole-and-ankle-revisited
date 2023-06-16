@@ -62,7 +62,7 @@ const Wrapper = styled.div`
 
 const LeftColumn = styled.div`
   flex-basis: 248px;
-  @media (${QUERIES.laptopMax}) {
+  @media (${QUERIES.tabletMax}) {
     display: none;
   }
 `;

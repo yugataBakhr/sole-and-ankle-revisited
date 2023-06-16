@@ -23,6 +23,10 @@ const Header = () => {
         <Side>
           <Logo />
         </Side>
+        <LogoContainer>
+          <Logo />
+        </LogoContainer>
+
         <Nav>
           <NavLink href="/sale">SALE</NavLink>
           <NavLink href="/new">NEW&nbsp;RELEASES</NavLink>
@@ -73,12 +77,17 @@ const Header = () => {
 
 const MainHeader = styled.div`
   display: flex;
-  align-items: baseline;
+  align-items: center;
   padding: 18px 32px;
   height: 72px;
   border-bottom: 1px solid var(--color-gray-300);
+ 
+  @media ${QUERIES.tabletMax} {
+    border-top: 4px solid var(--color-gray-900);
+    justify-content: space-between;
+  }
   
-  @media (${QUERIES.mobileMax}) {
+  @media ${QUERIES.mobileMax} {
     padding: 18px 16px;
   }
 `;
@@ -87,17 +96,29 @@ const Nav = styled.nav`
   display: flex;
   gap: clamp(
     2rem,
-    19.5vw - 14rem,
+    11.5vw - 4.5rem,
     8rem
   );
   margin: 0px 48px;
-  @media (${QUERIES.laptopMax}) {
+  @media ${QUERIES.tabletMax} {
     display: none;
   }
 `;
 
 const Side = styled.div`
   flex: 1;
+  
+  @media ${QUERIES.tabletMax} {
+    display: none;
+  }
+`;
+
+const LogoContainer = styled.div`
+  display: none;
+
+  @media ${QUERIES.tabletMax} {
+    display: block;
+  }
 `;
 
 const NavLink = styled.a`
@@ -114,7 +135,7 @@ const NavLink = styled.a`
 
 const MenuContainer = styled.ul`
   display: none;
-  @media (${QUERIES.laptopMax}) {
+  @media ${QUERIES.tabletMax} {
     display: flex;
     justify-content: space-around;
     gap: 2.5rem;
@@ -123,11 +144,11 @@ const MenuContainer = styled.ul`
     }
   }
 
-  @media (${QUERIES.tabletMax}) {
+  @media ${QUERIES.tabletMax} {
     gap: 2rem;
   }
 
-  @media (${QUERIES.mobileMax}) {
+  @media ${QUERIES.mobileMax} {
     gap: 1.5rem;
   }
 
